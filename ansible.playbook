@@ -1,0 +1,78 @@
+# -*- mode: yaml; -*-
+- hosts: localhost
+  connection: local
+  gather_facts: no
+  sudo: no
+  vars:
+    homebrew_packages_taps:
+      - homebrew/binary
+      - caskroom/cask
+      - railwaycat/emacsmacport
+
+    homebrew_packages_packages:
+      #- { name: ansible }
+      - { name: cmake }
+      - { name: imagemagick }
+      - { name: p7zip }
+      - { name: md5sha1sum }
+      - { name: autojump }
+
+    homebrew_cask_packages_packages:
+      - 1password
+      #- adobe-photoshop-lightroom
+      - aquaskk
+      - bettertouchtool
+      #- cheetah3d
+      - cooviewer
+      #- emacs-mac
+      - google-chrome
+      #- intensify-pro
+      - istat-menus
+      - karabiner
+      - licecap
+      - mpv
+      - p4merge
+      #- parallels-desktop
+      - pandoc
+      #- seil
+      - skitch
+      #- virtualbox
+      #- xquartz
+
+    osx_defaults_finder_values:
+      - { domain: com.apple.dock, key: orientation, type: string, value: left, state: present }
+
+  roles:
+    #- hnakamur.osx-defaults
+    - hnakamur.homebrew-packages
+    #- hnakamur.homebrew-cask-packages
+
+  tasks:
+    #- name: killall tasks
+    #  shell: killall Dock
+    #  changed_when: false
+    #  always_run: yes
+
+    - name: .emacs
+      git: repo=https://github.com/safx/.emacs.d.git dest=~/.emacs.d
+
+    - name: .oh-my-zsh
+      git: repo=https://github.com/safx/oh-my-zsh.git dest=~/.oh-my-zsh
+    - name: .zshrc
+      file: src=~/.oh-my-zsh/.zshrc dest=~/.zshrc state=link
+
+    - name: other dot files
+      git: repo=https://github.com/safx/.dot-files.git dest=~/.dot-files
+    - name: mkdir
+      file: dest=~/{{item}} state=directory
+      with_items:
+        - .mpv
+        - .ssh
+    - name: symlink dot files
+      file: src=~/.dot-files/{{item}} dest=~/{{item}} state=link
+      with_items:
+        - .gitconfig
+        - .gitignore_global
+        - .screenrc
+        - .mpv/input.conf
+        - .ssh/config
