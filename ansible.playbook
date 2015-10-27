@@ -2,8 +2,23 @@
 - hosts: localhost
   connection: local
   gather_facts: no
-  sudo: no
+  #sudo: no
   vars:
+    gems:
+      #- boarding
+      - cert
+      - cocoapods
+      - deliver
+      #- fastlane
+      - frameit
+      - gym
+      #- pem
+      #- pilot
+      - produce
+      - scan
+      - sigh
+      - snapshot
+
     homebrew_packages_taps:
       - homebrew/binary
       - caskroom/cask
@@ -11,6 +26,7 @@
 
     homebrew_packages_packages:
       #- { name: ansible }
+      - { name: brew-cask }
       - { name: cmake }
       - { name: imagemagick }
       - { name: p7zip }
@@ -52,6 +68,9 @@
     #  shell: killall Dock
     #  changed_when: false
     #  always_run: yes
+    - name: ruby gems
+      gem: name={{item}}
+      with_items: gems
 
     - name: .emacs
       git: repo=https://github.com/safx/.emacs.d.git dest=~/.emacs.d
