@@ -69,7 +69,7 @@
     #  changed_when: false
     #  always_run: yes
     - name: ruby gems
-      gem: name={{item}}
+      gem: name={{item}} state=latest
       with_items: gems
 
     - name: .emacs
