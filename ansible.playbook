@@ -9,7 +9,7 @@
       - cert
       - cocoapods
       - deliver
-      #- fastlane
+      - fastlane
       - frameit
       - gym
       #- pem
