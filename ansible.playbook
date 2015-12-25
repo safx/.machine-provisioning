@@ -18,6 +18,7 @@
       - scan
       - sigh
       - snapshot
+      - synx
 
     homebrew_packages_taps:
       - homebrew/binary
@@ -82,11 +83,12 @@
 
     - name: other dot files
       git: repo=https://github.com/safx/.dot-files.git dest=~/.dot-files
-    - name: mkdir
+    - name: mkdir in HOME
       file: dest=~/{{item}} state=directory
       with_items:
         - .mpv
         - .ssh
+        - Library/Application\ Support/Karabiner
     - name: symlink dot files
       file: src=~/.dot-files/{{item}} dest=~/{{item}} state=link
       with_items:
@@ -95,3 +97,7 @@
         - .screenrc
         - .mpv/input.conf
         - .ssh/config
+    - name: symlink dot files 2
+      file: src=~/.dot-files/{{item.src}} dest=~/{{item.dest}} state=link
+      with_items:
+        - { src: Karabiner/private.xml, dest: Library/Application\ Support/Karabiner/private.xml }
