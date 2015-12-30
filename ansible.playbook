@@ -19,6 +19,7 @@
       - sigh
       - snapshot
       - synx
+      - travis
 
     homebrew_packages_taps:
       - homebrew/binary
@@ -28,6 +29,7 @@
     homebrew_packages_packages:
       #- { name: ansible }
       - { name: brew-cask }
+      - { name: carthage }
       - { name: cmake }
       - { name: imagemagick }
       - { name: p7zip }
