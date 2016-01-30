@@ -21,14 +21,8 @@ function setupAnsible() {
         which ansible-playbook || exit 1
     fi
 
-    if [ ! -d hnakamur.homebrew-packages -o "$1" == "--init" ]; then
-        ansible-galaxy install --roles-path=. hnakamur.homebrew-packages
-        ansible-galaxy install --roles-path=. hnakamur.homebrew-cask-packages
-        ansible-galaxy install --roles-path=. hnakamur.osx-defaults
-    fi
     echo 'localhost' > hosts
 }
-
 
 setupBrew "$1"
 setupAnsible "$1"

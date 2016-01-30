@@ -21,56 +21,66 @@
       - synx
       - travis
 
-    homebrew_packages_taps:
+    homebrew_taps:
       - homebrew/binary
       - caskroom/cask
-      - railwaycat/emacsmacport
+      #- railwaycat/emacsmacport
 
-    homebrew_packages_packages:
-      #- { name: ansible }
-      - { name: brew-cask }
-      - { name: carthage }
-      - { name: cmake }
-      - { name: imagemagick }
-      - { name: p7zip }
-      - { name: md5sha1sum }
-      - { name: autojump }
+    homebrew_installed_packages:
+      #- ansible
+      - autojump
+      - carthage
+      - cmake
+      - imagemagick
+      - md5sha1sum
+      - mpv
+      - p7zip
+      - pandoc
 
-    homebrew_cask_packages_packages:
+    homebrew_cask_apps:
       - 1password
       #- adobe-photoshop-lightroom
-      - aquaskk
+      #- aquaskk
       - bettertouchtool
       #- cheetah3d
       - cooviewer
       #- emacs-mac
       - google-chrome
       #- intensify-pro
-      - istat-menus
-      - karabiner
+      #- istat-menus
+      #- karabiner
       - licecap
-      - mpv
       - p4merge
       #- parallels-desktop
-      - pandoc
       #- seil
       - skitch
+      - vagrant
       #- virtualbox
       #- xquartz
 
     osx_defaults_finder_values:
       - { domain: com.apple.dock, key: orientation, type: string, value: left, state: present }
 
-  roles:
-    #- hnakamur.osx-defaults
-    - hnakamur.homebrew-packages
-    #- hnakamur.homebrew-cask-packages
-
   tasks:
     #- name: killall tasks
     #  shell: killall Dock
     #  changed_when: false
     #  always_run: yes
+    - name: Homebrew tap
+      homebrew_tap: tap={{item}} state=present
+      with_items: homebrew_taps
+
+    - name: Homebrew update
+      homebrew: update_homebrew=yes
+
+    - name: Homebrew packages
+      homebrew: name={{item}} state=latest
+      with_items: homebrew_installed_packages
+
+    - name: Homebrew casks
+      homebrew_cask: name={{item}} state=present
+      with_items: homebrew_cask_apps
+
     - name: ruby gems
       gem: name={{item}} state=latest
       with_items: gems
