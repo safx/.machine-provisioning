@@ -27,5 +27,10 @@ function setupAnsible() {
 setupBrew "$1"
 setupAnsible "$1"
 
-HOMEBREW_CASK_OPTS="--appdir=/Applications"  ansible-playbook -i hosts -vv ansible.playbook
+verbose='-vv'
+if [ "$1" == "-v" ]; then
+    verbose='-vvvv'
+fi
+
+HOMEBREW_CASK_OPTS="--appdir=/Applications"  ansible-playbook -i hosts ${verbose} ansible.playbook
 gem clean
