@@ -28,6 +28,7 @@
 
     homebrew_installed_packages:
       #- ansible
+      - ag
       - autojump
       - carthage
       - cmake
