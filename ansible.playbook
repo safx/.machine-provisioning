@@ -107,6 +107,7 @@
       with_items:
         - .mpv
         - .ssh
+        - .peco
         - Library/Application\ Support/Karabiner
     - name: symlink dot files
       file: src=~/.dot-files/{{item}} dest=~/{{item}} state=link
@@ -116,6 +117,7 @@
         - .screenrc
         - .mpv/input.conf
         - .ssh/config
+        - .peco/config.json
     - name: symlink dot files 2
       file: src=~/.dot-files/{{item.src}} dest=~/{{item.dest}} state=link
       with_items:
