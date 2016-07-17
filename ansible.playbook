@@ -32,6 +32,7 @@
       - autojump
       - carthage
       - cmake
+      - diff-so-fancy
       - imagemagick
       - md5sha1sum
       - mpv
