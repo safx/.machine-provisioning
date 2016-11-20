@@ -34,13 +34,12 @@
       - cmake
       - diff-so-fancy
       - imagemagick
+      - mas
       - md5sha1sum
       - mpv
       - p7zip
       - pandoc
       - peco
-      - scala
-      - argon/mas/mas
 
     homebrew_cask_apps:
       - 1password
