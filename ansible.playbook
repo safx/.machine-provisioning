@@ -6,20 +6,19 @@
   vars:
     gems:
       #- boarding
-      - cert
+      #- cert
       - cocoapods
-      - deliver
-      - fastlane
-      - frameit
-      - gym
+      #- deliver
+      #- fastlane
+      #- frameit
+      #- gym
       #- pem
       #- pilot
-      - produce
-      - scan
-      - sigh
-      - snapshot
-      - synx
-      - travis
+      #- produce
+      #- scan
+      #- sigh
+      #- snapshot
+      #- synx
 
     homebrew_taps:
       - homebrew/binary
@@ -28,18 +27,27 @@
 
     homebrew_installed_packages:
       #- ansible
-      - ag
-      - autojump
-      - carthage
+      - broot
+      #- carthage
       - cmake
       - diff-so-fancy
+      - dive
+      - exa
+      - fd
+      - git
+      - git-delta
       - imagemagick
+      - jq
       - mas
       - md5sha1sum
+      - mozjpeg
       - mpv
       - p7zip
       - pandoc
-      - peco
+      - ripgrep
+      - sk
+      - xsv
+      - zoxide
 
     homebrew_cask_apps:
       - 1password
@@ -47,17 +55,17 @@
       #- aquaskk
       - bettertouchtool
       #- cheetah3d
-      - cooviewer
+      #- cooviewer
       #- emacs-mac
       - google-chrome
       #- intensify-pro
-      #- istat-menus
+      - iterm2
+      - kap
       #- karabiner
-      - licecap
+      - keycastr
       - p4merge
       #- parallels-desktop
       #- seil
-      - skitch
       - vagrant
       #- virtualbox
       #- xquartz
