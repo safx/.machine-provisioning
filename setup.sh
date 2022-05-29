@@ -1,35 +1,35 @@
 #!/bin/sh
 
-function setupBrew() {
+setupBrew() {
     xcode-select -p > /dev/null || xcode-select --install
 
-    if ! which brew > /dev/null || [ "$1" == "--init" ]; then
+    if ! which brew > /dev/null || [ "$1" = "--init" ]; then
         ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
         eval "$(/opt/homebrew/bin/brew shellenv)"
 
-        which brew || exit "brew not found"
+        which brew || (ehco "brew not found" && exit 1)
         brew doctor
         brew update
     fi
 }
 
-function setupAsdf() {
-    if ! which asdf > /dev/null || [ "$1" == "--init" ]; then
+setupAsdf() {
+    if ! which asdf > /dev/null || [ "$1" = "--init" ]; then
         echo 'install asdf'
 	brew install asdf
     fi
 }
 
-function setupAnsible() {
-    if ! which ansible-playbook > /dev/null || [ "$1" == "--init" ]; then
+setupAnsible() {
+    if ! which ansible-playbook > /dev/null || [ "$1" = "--init" ]; then
         echo 'install Ansbile'
         asdf plugin add python
         asdf install python latest
-        asdf local python $(asdf list python)
+        asdf local python "$(asdf list python)"
 
         asdf plugin add ansible-core https://github.com/amrox/asdf-pyapp.git
         asdf install ansible-core latest
-        asdf local ansible-core $(asdf list ansible-core)
+        asdf local ansible-core "$(asdf list ansible-core)"
 
         asdf reshim
         which ansible-playbook || exit 1
@@ -40,7 +40,7 @@ function setupAnsible() {
 }
 
 verbose='-vv'
-if [ "$1" == "-v" ]; then
+if [ "$1" = "-v" ]; then
     verbose='-vvvv'
     shift 1
 fi

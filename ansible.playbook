@@ -8,9 +8,7 @@
       - railwaycat/emacsmacport
 
     homebrew_installed_packages:
-      #- ansible
       - broot
-      #- carthage
       - cmake
       - diff-so-fancy
       - dive
@@ -27,6 +25,8 @@
       - p7zip
       - pandoc
       - ripgrep
+      - rover
+      - shellcheck
       - sk
       - xsv
       - zoxide
@@ -36,13 +36,13 @@
       - bettertouchtool
       - emacs-mac
       - google-chrome
+      - inkscape
       - iterm2
       - kap
       #- karabiner
       - keycastr
       #- p4merge
-      #- seil
-       #- vagrant
+      #- vagrant
       #- virtualbox
       #- xquartz
 
