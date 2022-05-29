@@ -19,6 +19,8 @@ setupAsdf() {
         git clone https://github.com/asdf-vm/asdf.git "$HOME/.asdf" --branch v0.10.0
         # shellcheck source=/dev/null
         . "$HOME"/.asdf/asdf.sh
+        rehash
+        which asdf || (ehco "asdf not found" && exit 1)
     fi
 }
 
@@ -27,14 +29,15 @@ setupAnsible() {
         echo 'install Ansbile'
         asdf plugin add python
         asdf install python latest
-        asdf local python "$(asdf list python | cut -b 3-)"
+        asdf global python "$(asdf list python | cut -b 3-)"
+        asdf reshim && rehash
 
         asdf plugin add ansible-core https://github.com/amrox/asdf-pyapp.git
         asdf install ansible-core latest
         asdf local ansible-core "$(asdf list ansible-core | cut -b 3-)"
+        asdf reshim && rehash
 
-        asdf reshim
-        which ansible-playbook || exit 1
+        which ansible-playbook || (ehco "ansible not found" && exit 1)
         ansible-galaxy collection install community.general
     fi
 
