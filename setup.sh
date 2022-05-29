@@ -16,7 +16,9 @@ setupBrew() {
 setupAsdf() {
     if ! which asdf > /dev/null || [ "$1" = "--init" ]; then
         echo 'install asdf'
-	brew install asdf
+        git clone https://github.com/asdf-vm/asdf.git "$HOME/.asdf" --branch v0.10.0
+        # shellcheck source=/dev/null
+        . "$HOME"/.asdf/asdf.sh
     fi
 }
 
