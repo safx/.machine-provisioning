@@ -4,26 +4,8 @@
   gather_facts: no
   #sudo: no
   vars:
-    gems:
-      #- boarding
-      #- cert
-      - cocoapods
-      #- deliver
-      #- fastlane
-      #- frameit
-      #- gym
-      #- pem
-      #- pilot
-      #- produce
-      #- scan
-      #- sigh
-      #- snapshot
-      #- synx
-
     homebrew_taps:
-      - homebrew/binary
-      - caskroom/cask
-      #- railwaycat/emacsmacport
+      - railwaycat/emacsmacport
 
     homebrew_installed_packages:
       #- ansible
@@ -50,23 +32,17 @@
       - zoxide
 
     homebrew_cask_apps:
-      - 1password
-      #- adobe-photoshop-lightroom
-      #- aquaskk
+      - aquaskk
       - bettertouchtool
-      #- cheetah3d
-      #- cooviewer
-      #- emacs-mac
+      - emacs-mac
       - google-chrome
-      #- intensify-pro
       - iterm2
       - kap
       #- karabiner
       - keycastr
-      - p4merge
-      #- parallels-desktop
+      #- p4merge
       #- seil
-      - vagrant
+       #- vagrant
       #- virtualbox
       #- xquartz
 
@@ -79,26 +55,22 @@
     #  changed_when: false
     #  always_run: yes
     - name: Homebrew tap
-      homebrew_tap: tap={{item}} state=present
+      community.general.homebrew_tap: tap={{item}} state=present
       with_items: "{{homebrew_taps}}"
 
     - name: Homebrew update
-      homebrew: update_homebrew=yes
+      community.general.homebrew: update_homebrew=yes
 
     - name: Homebrew packages
-      homebrew: name={{item}} state=latest
+      community.general.homebrew: name={{item}} state=latest
       with_items: "{{homebrew_installed_packages}}"
 
     - name: Homebrew casks
-      homebrew_cask: name={{item}} state=present
+      community.general.homebrew_cask: name={{item}} state=present
       with_items: "{{homebrew_cask_apps}}"
 
     #- name: Homebrew upgrade
     #  homebrew: upgrade_all=yes
-
-    - name: ruby gems
-      gem: name={{item}} state=latest
-      with_items: "{{gems}}"
 
     - name: .emacs
       git: repo=https://github.com/safx/.emacs.d.git dest=~/.emacs.d
