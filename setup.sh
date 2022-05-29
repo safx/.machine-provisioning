@@ -25,11 +25,11 @@ setupAnsible() {
         echo 'install Ansbile'
         asdf plugin add python
         asdf install python latest
-        asdf local python "$(asdf list python)"
+        asdf local python "$(asdf list python | cut -b 3-)"
 
         asdf plugin add ansible-core https://github.com/amrox/asdf-pyapp.git
         asdf install ansible-core latest
-        asdf local ansible-core "$(asdf list ansible-core)"
+        asdf local ansible-core "$(asdf list ansible-core | cut -b 3-)"
 
         asdf reshim
         which ansible-playbook || exit 1
