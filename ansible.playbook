@@ -8,8 +8,10 @@
       - railwaycat/emacsmacport
 
     homebrew_installed_packages:
+      - bat
       - broot
       - cmake
+      - dasel
       - diff-so-fancy
       - dive
       - exa
@@ -19,7 +21,7 @@
       - imagemagick
       - jq
       - mas
-      - md5sha1sum
+      #- md5sha1sum
       - mozjpeg
       - mpv
       - p7zip
@@ -28,6 +30,7 @@
       - rover
       - shellcheck
       - sk
+      - ugrep
       - xsv
       - zoxide
 
