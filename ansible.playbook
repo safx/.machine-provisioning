@@ -4,8 +4,8 @@
   gather_facts: no
   #sudo: no
   vars:
-    homebrew_taps:
-      - railwaycat/emacsmacport
+    #homebrew_taps:
+    #  - railwaycat/emacsmacport
 
     homebrew_installed_packages:
       - bat
@@ -23,9 +23,8 @@
       - mas
       #- md5sha1sum
       - mozjpeg
-      - mpv
       - p7zip
-      - pandoc
+      #- pandoc
       - ripgrep
       - rover
       - shellcheck
@@ -35,9 +34,10 @@
       - zoxide
 
     homebrew_cask_apps:
-      - aquaskk
-      - bettertouchtool
+      #- aquaskk
+      #- bettertouchtool
       - emacs-mac
+      - firefox
       - google-chrome
       - inkscape
       - iterm2
@@ -47,6 +47,7 @@
       #- p4merge
       #- vagrant
       #- virtualbox
+      - visual-studio-code
       #- xquartz
 
     osx_defaults_finder_values:
@@ -57,9 +58,9 @@
     #  shell: killall Dock
     #  changed_when: false
     #  always_run: yes
-    - name: Homebrew tap
-      community.general.homebrew_tap: tap={{item}} state=present
-      with_items: "{{homebrew_taps}}"
+    #- name: Homebrew tap
+    #  community.general.homebrew_tap: tap={{item}} state=present
+    #  with_items: "{{homebrew_taps}}"
 
     - name: Homebrew update
       community.general.homebrew: update_homebrew=yes
