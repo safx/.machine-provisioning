@@ -97,10 +97,11 @@
       with_items:
         - .gitconfig
         - .gitignore_global
-        - .screenrc
-        - .mpv/input.conf
+        - .rg
         - .ssh/config
+        - .mpv/input.conf
         - .peco/config.json
+        - .screenrc
     - name: symlink dot files 2
       file: src=~/.dot-files/{{item.src}} dest=~/{{item.dest}} state=link
       with_items:
