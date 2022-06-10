@@ -99,7 +99,6 @@
         - .gitignore_global
         - .rg
         - .ssh/config
-        - .mpv/input.conf
         - .peco/config.json
         - .screenrc
     - name: symlink dot files 2
