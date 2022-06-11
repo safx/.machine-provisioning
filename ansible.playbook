@@ -46,19 +46,10 @@
       #- karabiner
       - keycastr
       #- p4merge
-      #- vagrant
-      #- virtualbox
       - visual-studio-code
       #- xquartz
 
-    osx_defaults_finder_values:
-      - { domain: com.apple.dock, key: orientation, type: string, value: left, state: present }
-
   tasks:
-    #- name: killall tasks
-    #  shell: killall Dock
-    #  changed_when: false
-    #  always_run: yes
     #- name: Homebrew tap
     #  community.general.homebrew_tap: tap={{item}} state=present
     #  with_items: "{{homebrew_taps}}"
