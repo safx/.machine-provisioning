@@ -4,8 +4,8 @@
   gather_facts: no
   #sudo: no
   vars:
-    #homebrew_taps:
-    #  - railwaycat/emacsmacport
+    homebrew_taps:
+      - railwaycat/emacsmacport
 
     homebrew_installed_packages:
       - bat
@@ -50,19 +50,19 @@
       #- xquartz
 
   tasks:
-    #- name: Homebrew tap
-    #  community.general.homebrew_tap: tap={{item}} state=present
-    #  with_items: "{{homebrew_taps}}"
+    - name: Homebrew tap
+      community.general.packaging.os.homebrew_tap: tap={{item}} state=present
+      with_items: "{{homebrew_taps}}"
 
     - name: Homebrew update
-      community.general.homebrew: update_homebrew=yes
+      community.general.packaging.os.homebrew: update_homebrew=yes
 
     - name: Homebrew packages
-      community.general.homebrew: name={{item}} state=latest
+      community.general.packaging.os.homebrew: name={{item}} state=latest
       with_items: "{{homebrew_installed_packages}}"
 
     - name: Homebrew casks
-      community.general.homebrew_cask: name={{item}} state=present
+      community.general.packaging.os.homebrew_cask: name={{item}} state=present
       with_items: "{{homebrew_cask_apps}}"
 
     #- name: Homebrew upgrade
@@ -73,6 +73,7 @@
 
     - name: .oh-my-zsh
       git: repo=https://github.com/safx/oh-my-zsh.git dest=~/.oh-my-zsh
+      
     - name: .zshrc
       file: src=~/.oh-my-zsh/.zshrc dest=~/.zshrc state=link
 
