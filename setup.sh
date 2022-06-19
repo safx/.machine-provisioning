@@ -3,6 +3,7 @@
 setupBrew() {
     xcode-select -p > /dev/null || xcode-select --install
 
+    [ -f /opt/homebrew/bin/brew ] && eval "$(/opt/homebrew/bin/brew shellenv)"
     if ! which brew > /dev/null || [ "$1" = "--init" ]; then
         ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
         eval "$(/opt/homebrew/bin/brew shellenv)"
@@ -14,6 +15,7 @@ setupBrew() {
 }
 
 setupAsdf() {
+    [ -f "$HOME"/.asdf/asdf.sh ] && . "$HOME"/.asdf/asdf.sh
     if ! which asdf > /dev/null || [ "$1" = "--init" ]; then
         echo 'install asdf'
         git clone https://github.com/asdf-vm/asdf.git "$HOME/.asdf" --branch v0.10.0
