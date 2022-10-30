@@ -27,6 +27,7 @@
       #- pandoc
       - ripgrep
       - rover
+      - starship
       - shellcheck
       - sk
       - ugrep
@@ -73,7 +74,7 @@
 
     - name: .oh-my-zsh
       git: repo=https://github.com/safx/oh-my-zsh.git dest=~/.oh-my-zsh
-      
+
     - name: .zshrc
       file: src=~/.oh-my-zsh/.zshrc dest=~/.zshrc state=link
 
