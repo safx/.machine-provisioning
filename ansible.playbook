@@ -8,19 +8,20 @@
       - railwaycat/emacsmacport
 
     homebrew_installed_packages:
+      - atuin
       - bat
       - broot
       - cmake
       - dasel
-      - diff-so-fancy
+      - difftastic
       - dive
-      - exa
+      #- exa
       - fd
       - git
       - git-delta
       - imagemagick
       - jq
-      - mas
+      #- mas
       #- md5sha1sum
       - mozjpeg
       - p7zip
@@ -36,7 +37,6 @@
 
     homebrew_cask_apps:
       #- aquaskk
-      #- bettertouchtool
       - docker
       - emacs-mac
       - firefox
@@ -44,11 +44,8 @@
       - inkscape
       - iterm2
       - kap
-      #- karabiner
       - keycastr
-      #- p4merge
       - visual-studio-code
-      #- xquartz
 
   tasks:
     - name: Homebrew tap
@@ -72,12 +69,6 @@
     - name: .emacs
       git: repo=https://github.com/safx/.emacs.d.git dest=~/.emacs.d
 
-    - name: .oh-my-zsh
-      git: repo=https://github.com/safx/oh-my-zsh.git dest=~/.oh-my-zsh
-
-    - name: .zshrc
-      file: src=~/.oh-my-zsh/.zshrc dest=~/.zshrc state=link
-
     - name: other dot files
       git: repo=https://github.com/safx/.dot-files.git dest=~/.dot-files
 
@@ -95,8 +86,10 @@
         - .rg
         - .ssh/config
         - .screenrc
+        - zsh/.zshrc
 
-    - name: symlink config files for Karabiner
-      file: src=~/.dot-files/{{item.src}} dest=~/{{item.dest}} state=link
+    - name: symlink dot files to .config
+      file: src=~/.dot-files/{{item}} dest=~/.config/{{item}} state=link
       with_items:
-        - { src: Karabiner/private.xml, dest: Library/Application\ Support/Karabiner/private.xml }
+        - starship.toml
+        - atuin/config.toml
